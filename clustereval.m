@@ -20,14 +20,8 @@ method = lower(method);
     n = numel(a);
     I = max(a);
     J = max(b);
-    C = zeros(I, J);
-    for i = 1:I
-        tmp = a==i;
-        for j = 1:J
-            C(i,j) = sum(tmp & b==j);
-        end
-    end
-
+    C = crosstab(a,b); % This is faster
+    
     nis = sum(sum(C,2).^2);
     njs = sum(sum(C,1).^2);
     
